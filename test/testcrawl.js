@@ -50,7 +50,7 @@ describe("Test Crawl",function() {
 
 		// Use a different crawler this time
 		asyncCrawler.discoverResources = false;
-		asyncCrawler.queueURL("http://127.0.0.1:3000/async-stage1");
+		asyncCrawler.queueURL("http://127.0.0.1:3000/async-stage1", false);
 		asyncCrawler.start();
 
 		asyncCrawler.on("fetchcomplete",function(queueItem,data,res) {
@@ -64,7 +64,7 @@ describe("Test Crawl",function() {
 
 				// Taking advantage of the fact that for these, the sum total
 				// of the body data is a URL.
-				asyncCrawler.queueURL(String(data)).should.be.true;
+				asyncCrawler.queueURL(String(data), false).should.be.true;
 
 				evtDone();
 			},100);
